@@ -13,6 +13,29 @@ get '/videos' do
   erb :videos
 end
 
+get '/videos/new' do
+  erb :new
+end
+
+get '/videos/upload' do
+  sql = 'select * from videos'
+  @videos = run_sql(sql)
+  erb :upload
+end
+
+post '/videos/upload' do
+  sql = "insert into videos (title, url, genre) values ('#{params[:title]}', '#{params[:url]}', '#{params[:genre]}')"
+  binding.pry
+  run_sql(sql)
+  redirect to ('/')
+end
+
+
+
+
+
+
+
 private
 def run_sql(sql)
   conn = PG.connect(dbname: 'memetube' , host: 'localhost')
