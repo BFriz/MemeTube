@@ -25,10 +25,14 @@ end
 
 post '/videos/upload' do
   sql = "insert into videos (title, url, genre) values ('#{params[:title]}', '#{params[:url]}', '#{params[:genre]}')"
-  binding.pry
   run_sql(sql)
   redirect to ('/')
 end
+
+# delete '/videos' do
+# redirect to ('/videos')
+# end
+
 
 
 
